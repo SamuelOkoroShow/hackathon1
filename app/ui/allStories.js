@@ -12,11 +12,15 @@ import {
   Text,
   Dimensions,
   View,
+  LayoutAnimation,
   ListView,
+  TouchableOpacity,
   Image
 } from 'react-native';
 
 import * as firebase from 'firebase';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 
 import Nav from "./widgets/nav"
 import Back from "../images/background2.png"
@@ -62,6 +66,7 @@ var colors = [
   purple,orange,blue,red,green]
 
 var {height, width} = Dimensions.get('window');
+var i = 0;
 
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 export default class AllStories extends Component {
@@ -70,19 +75,59 @@ export default class AllStories extends Component {
 
     this.state = {
        dataSource: ds.cloneWithRows(eachPost),
-       currentMessage: ""
+       currentMessage: "",
+       storiesColor: "rgba(229,57,211,0.77)",
+       flexed:3
     }
   }
 
+  componentDidMount(){
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
+    setTimeout(() => {this.changeColor()}, 2000)
+    setTimeout(() => {this.changeColor()}, 5000)
+    setTimeout(() => {this.changeColor()}, 9000)
+    setTimeout(() => {this.changeColor()}, 13000)
+    setTimeout(() => {this.changeColor()}, 15000)
+    setTimeout(() => {this.changeColor()}, 19000)
+    setTimeout(() => {this.changeColor()}, 23000)
+    setTimeout(() => {this.changeColor()}, 29000)
+    setTimeout(() => {this.changeColor()}, 33000)
+    setTimeout(() => {this.changeColor()}, 37000)
+    setTimeout(() => {this.setState({flexed:3})}, 4000)
+
+  }
+  changeColor(){
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
+    i++
+    if(i == 5){
+      i = 0
+    }
+    this.setState({
+      storiesColor: colors[i],
+    })
+  }
   storyGen(x){
     counter++;
-    if(counter == 5){
+    if(counter == 6){
       counter = 1;
+
     }
  
-        return(<View style={{flexDirection:'row', margin:5, width: width-10, shadowColor: "#000000", shadowOpacity: 0.3, shadowRadius: 3, shadowOffset: { height: 1, width: 0 }, height:100, backgroundColor:'rgba(255,255,255,0.5)',  alignSelf:'flex-start' }}>
+        return(<View style={{flexDirection:'row', margin:5, width: width-10, shadowColor: "#000000", shadowOpacity: 0.5, shadowRadius: 3, shadowOffset: { height: 1, width: 0 }, height:80, backgroundColor:'rgba(255,255,255,0.76)',  alignSelf:'flex-start' }}>
           <View style={{width:5, backgroundColor:colors[counter-1]}} />
-          <View></View>
+          <View style={{flex:this.state.flexed}}>
+          <Text style={{fontSize:24, fontWeight:'300', margin:5, marginLeft:15, marginTop:8, color:"rgba(0,0,0,0.6)"}}>{x.name}</Text>
+          <View style={{flexDirection:'row', marginLeft:15, alignItems:'center'}}>
+          <Icon name = "pets" color ="#777" size={15} style={{marginLeft:0}} />
+          <Icon name = "wifi-tethering" color ="#777" size={15} style={{marginLeft:15}} />
+          <Icon name = "attach-file" color ="#777" size={15} style={{marginLeft:15}} />
+          <Icon name = "gamepad" color ="#777" size={15} style={{marginLeft:15}} />
+          </View>
+
+          </View>
+          <TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center', shadowColor: "#000000", shadowOpacity: 0.3, shadowRadius: 3, shadowOffset: { height: 1, width: 0 }, }}>
+          <Icon name='chevron-right' size={26} color="#fff" style={{padding:10, backgroundColor:colors[counter-1]}} />
+          </TouchableOpacity>
           </ View>)
         
 
@@ -91,10 +136,11 @@ export default class AllStories extends Component {
   render() {
     return (
       <Image source={Back} resizeMode='contain' style={styles.container}>
-      <Nav name="Home" />
+      <Nav name="All Stories" />
         <View style={{flex:1}}>
-        <Text style={{color:'#333', fontSize:35, fontWeight:'700', margin:10, backgroundColor:'rgba(0,0,0,0)'}}>ALL STORIES</Text>
-        <Text style={{backgroundColor:'rgba(0,0,0,0.8)', color:"#fff", textAlign:'center',padding:10, alignSelf:'center', width:200}}>2 Goats walk into a bar</Text>
+        <Text style={{color:'#333', fontSize:35, fontWeight:'700', margin:10, backgroundColor:'rgba(0,0,0,0)', }}>ALL STORIES</Text>
+        <Text style={{backgroundColor:'rgba(0,0,0,0.8)', color:"#fff", marginLeft:10, padding:10, width:130}}>All Active Stories</Text>
+        <View style={{width:130, height:3, marginBottom:10, marginLeft:10, backgroundColor:this.state.storiesColor}} />
         <ListView style ={{flex:1}}
         dataSource = {this.state.dataSource}
         renderRow={(rowData) => this.storyGen(rowData)}

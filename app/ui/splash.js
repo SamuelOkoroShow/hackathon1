@@ -16,9 +16,10 @@ import {
 export default class Splash extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <Image style={styles.container} resizeMode="contain" source={require('../images/background3.png')} >
        <Image source={require('../images/logo.png')} style={{height:270, width:270}} resizeMode="contain" />
-      </View>
+      
+      </Image>
     );
   }
 }
@@ -26,6 +27,8 @@ export default class Splash extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width:null,
+    height:null,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
