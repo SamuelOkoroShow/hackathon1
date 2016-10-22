@@ -113,7 +113,7 @@ export default class AllStories extends Component {
 
     }
  
-        return(<View style={{flexDirection:'row', margin:5, width: width-10, shadowColor: "#000000", shadowOpacity: 0.5, shadowRadius: 3, shadowOffset: { height: 1, width: 0 }, height:80, backgroundColor:'rgba(255,255,255,0.76)',  alignSelf:'flex-start' }}>
+        return(<View style={{flexDirection:'row', margin:10, width: width-20, shadowColor: "#000000", shadowOpacity: 0.5, shadowRadius: 3, shadowOffset: { height: 1, width: 0 }, height:80, backgroundColor:'rgba(255,255,255,0.76)',  alignSelf:'flex-start' }}>
           <View style={{width:5, backgroundColor:colors[counter-1]}} />
           <View style={{flex:this.state.flexed}}>
           <Text style={{fontSize:24, fontWeight:'300', margin:5, marginLeft:15, marginTop:8, color:"rgba(0,0,0,0.6)"}}>{x.name}</Text>
@@ -125,7 +125,7 @@ export default class AllStories extends Component {
           </View>
 
           </View>
-          <TouchableOpacity style={{flex:1, justifyContent:'center', alignItems:'center', shadowColor: "#000000", shadowOpacity: 0.3, shadowRadius: 3, shadowOffset: { height: 1, width: 0 }, }}>
+          <TouchableOpacity onPress={() => this.props.navigator.push({id:'stories'})} style={{flex:1, justifyContent:'center', alignItems:'center', shadowColor: "#000000", shadowOpacity: 0.3, shadowRadius: 3, shadowOffset: { height: 1, width: 0 }, }}>
           <Icon name='chevron-right' size={26} color="#fff" style={{padding:10, backgroundColor:colors[counter-1]}} />
           </TouchableOpacity>
           </ View>)
@@ -136,7 +136,7 @@ export default class AllStories extends Component {
   render() {
     return (
       <Image source={Back} resizeMode='contain' style={styles.container}>
-      <Nav name="All Stories" />
+      <Nav name="All Stories" {...this.props} />
         <View style={{flex:1}}>
         <Text style={{color:'#333', fontSize:35, fontWeight:'700', margin:10, backgroundColor:'rgba(0,0,0,0)', }}>ALL STORIES</Text>
         <Text style={{backgroundColor:'rgba(0,0,0,0.8)', color:"#fff", marginLeft:10, padding:10, width:130}}>All Active Stories</Text>
