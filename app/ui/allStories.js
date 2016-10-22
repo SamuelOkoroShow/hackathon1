@@ -113,7 +113,7 @@ export default class AllStories extends Component {
 
     }
  
-        return(<View style={{flexDirection:'row', margin:10, width: width-20, shadowColor: "#000000", shadowOpacity: 0.5, shadowRadius: 3, shadowOffset: { height: 1, width: 0 }, height:80, backgroundColor:'rgba(255,255,255,0.76)',  alignSelf:'flex-start' }}>
+        return(<View style={{flexDirection:'row', margin:10, width: width-20, shadowColor: "#000000", shadowOpacity: 0.5, shadowRadius: 3, shadowOffset: { height: 1, width: 0 }, height:80, backgroundColor:'rgba(255,255,255,1)',  alignSelf:'flex-start' }}>
           <View style={{width:5, backgroundColor:colors[counter-1]}} />
           <View style={{flex:this.state.flexed}}>
           <Text style={{fontSize:24, fontWeight:'300', margin:5, marginLeft:15, marginTop:8, color:"rgba(0,0,0,0.6)"}}>{x.name}</Text>

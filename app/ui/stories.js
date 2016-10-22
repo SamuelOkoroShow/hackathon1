@@ -9,6 +9,7 @@ import {
   AppRegistry,
   StyleSheet,
   ScrollView,
+  TextInput,
   Text,
   Dimensions,
   View,
@@ -63,6 +64,7 @@ var eachPost = [
   "time": "11:43 PM"
 }
 ]
+var i = 0
 
 var counter = 0;
 
@@ -103,49 +105,92 @@ export default class Stories extends Component {
     super(props)
 
     this.state = {
+       eachpost : eachPost,
        dataSource: ds.cloneWithRows(eachPost),
        robotSource: ds.cloneWithRows(robots),
-       currentMessage: ""
+       currentMessage: "",
+       storiesColor: colors[0],
+       text:"",
     }
+  }
+
+  componentDidMount(){
+
+
+
+
+  }
+
+  changeColor(){
+
+    i++
+    if(i == 5){
+      i = 0
+    }
+    this.setState({
+      storiesColor: colors[i],
+    })
   }
 
   storyGen(x){
     counter++;
-    if(counter == 4){
+    if(counter == 5){
       counter = 1;
     }
     if(right){
       right = false
-        return(<View style={{flexDirection:'row', margin:10, width: 270, alignSelf:'flex-start' }}>
-                                        <Image source={{uri: robots[counter-1].avatar}} resizeMode="contain" style={{width:50, backgroundColor:'rgba(0,0,0,0.4)', borderRadius:25, alignSelf:'center', margin:5, height:50}} />
-          <View style={{alignSelf:'flex-start', backgroundColor: colors[counter], width:200, padding:10, margin:5}}>
+        return(<View style={{flexDirection:'row', margin:5, width: 270, alignSelf:'flex-start' }}>
+                                        <View style={{width:50, backgroundColor:'rgba(0,0,0,0.4)', borderRadius:25, alignSelf:'center', margin:5, height:50}} />
+          <View style={{alignSelf:'flex-start', borderRadius:5, borderWidth:2, borderColor:'rgba(0,0,0,0.3)', backgroundColor: colors[counter], width:200, padding:10, margin:5}}>
           <Text style={{color:"#fff",  }}>{x.message}</Text>
           </View>
           </ View>)
         
       } else{
         right = true
-        return(<View style={{flexDirection:'row', margin:10, width: 270, alignSelf:'flex-end' }}>
-          <View style={{alignSelf:'flex-end', backgroundColor: colors[counter], width:200, padding:10, margin:5}}>
+        return(<View style={{flexDirection:'row', margin:5, width: 270, alignSelf:'flex-end' }}>
+          <View style={{alignSelf:'flex-end', borderRadius:5, borderWidth:2, borderColor:'rgba(0,0,0,0.3)', backgroundColor: colors[counter], width:200, padding:10, margin:5}}>
           <Text style={{color:"#fff",  }}>{x.message}</Text>
           </View>
-                              <Image source={{uri: robots[counter-1].avatar}} resizeMode="contain" style={{width:50, backgroundColor:'rgba(0,0,0,0.3)', borderRadius:25, alignSelf:'center', margin:5, height:50}} />
+                              <View resizeMode="contain" style={{width:50, backgroundColor:'rgba(0,0,0,0.3)', borderRadius:25, alignSelf:'center', margin:5, height:50}} />
 
           </ View>)
         
       }
 
   }
+
+  submit(x){
+    console.log(x);
+    eachPost.push({message:x})
+    this.setState({
+      dataSource: ds.cloneWithRows(eachPost),
+    })
+  }
   render() {
     return (
       <Image source={Back} resizeMode='contain' style={styles.container}>
-      <Nav name="Home" />
+      <Nav name="Home" {...this.props} />
         <View style={{flex:1}}>
-        <Text style={{color:'#333', fontSize:35, fontWeight:'700', margin:10, backgroundColor:'rgba(0,0,0,0)'}}>STORY</Text>
-        <Text style={{backgroundColor:'rgba(0,0,0,0.8)', color:"#fff", textAlign:'center',padding:10, alignSelf:'center', width:200}}>2 Goats walk into a bar</Text>
+        <Text style={{color:'#333', fontSize:35, fontWeight:'700', margin:10, backgroundColor:'rgba(0,0,0,0)', shadowColor: "#000000", shadowOpacity: 0.3, shadowRadius: 3, shadowOffset: { height: 1, width: 0 }}}>STORY</Text>
+        <Text style={{backgroundColor:'rgba(0,0,0,0.8)', color:"#fff", textAlign:'center',padding:10, alignSelf:'center', width:200, borderLeftWidth:5, borderRightWidth:5, borderColor:this.state.storiesColor,}}>2 Goats walk into a bar</Text>
         <ListView style ={{flex:1}}
         dataSource = {this.state.dataSource}
         renderRow={(rowData) => this.storyGen(rowData)}
+        />
+        <View style={{flexDirection:'row'}}>
+        <View style={{height:4, width:width/4, backgroundColor:colors[0]}} />
+        <View style={{height:4, width:width/4, backgroundColor:colors[1]}} />
+        <View style={{height:4, width:width/4, backgroundColor:colors[2]}} />
+        <View style={{height:4, width:width/4, backgroundColor:colors[3]}} />
+        </View>
+        <TextInput 
+        maxLength = {50}
+        onChangeText={(text) => {
+          this.setState({text});
+        }}
+        onSubmitEditing = {() => this.submit(this.state.text)}
+        style={{height:50, padding:10, backgroundColor:'#fff'}}
         />
         </View>
       </Image>
