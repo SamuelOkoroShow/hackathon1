@@ -13,6 +13,7 @@ import {
 import Splash from './splash'
 import AllStories from './allStories'
 import Stories from './stories'
+import AllImersive from './allImersive'
 import EachUser from './eachProfile'
 
 
@@ -31,6 +32,13 @@ export default class Index extends Component {
     if (routeId === 'allStories') {
       return (
         <AllStories
+        {...this.props} 
+        navigator={navigator} />
+        );
+    }
+    if (routeId === 'allImersive') {
+      return (
+        <AllImersive
         {...this.props} 
         navigator={navigator} />
         );
