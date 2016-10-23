@@ -14,6 +14,16 @@ import {
 } from 'react-native';
 
 export default class Splash extends Component {
+  componentsDidMount(){
+    this.setTimeout(() => this.nextRoute(), 2000)
+
+  }
+
+  nextRoute(){
+    this.props.navigator.push({
+      id:'allStories'
+    })
+  }
   render() {
     return (
       <Image style={styles.container} resizeMode="contain" source={require('../images/background3.png')} >
