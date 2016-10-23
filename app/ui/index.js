@@ -93,7 +93,7 @@ if (routeId === 'eachUser') {
    />
      <Navigator
      style={{flex: 1}}
-     initialRoute={{id: 'eachUser', name: 'eachUser'}}
+     initialRoute={{id: 'splash', name: 'splash'}}
      renderScene={this.renderScene.bind(this)}/>
         </View>
     )

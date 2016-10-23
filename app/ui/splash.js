@@ -14,8 +14,8 @@ import {
 } from 'react-native';
 
 export default class Splash extends Component {
-  componentsDidMount(){
-    this.setTimeout(() => this.nextRoute(), 2000)
+  componentDidMount(){
+    setTimeout(() => this.nextRoute(), 2000)
 
   }
 
@@ -27,7 +27,7 @@ export default class Splash extends Component {
   render() {
     return (
       <Image style={styles.container} resizeMode="contain" source={require('../images/background3.png')} >
-       <Image source={require('../images/logo.png')} style={{height:270, width:270}} resizeMode="contain" />
+       <Image source={require('../images/logo.png')} style={{height:150, width:150}} resizeMode="contain" />
       
       </Image>
     );
