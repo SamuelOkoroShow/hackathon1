@@ -12,17 +12,12 @@ import {
   Image,
   View
 } from 'react-native';
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDBGn38IcpcQfdAFJHuoD9qRSdw3gLxWHw",
-    authDomain: "hackathon1-6bd63.firebaseapp.com",
-    databaseURL: "https://hackathon1-6bd63.firebaseio.com",
-    storageBucket: "hackathon1-6bd63.appspot.com",
-    messagingSenderId: "1072968272935"
-  };
-  firebase.initializeApp(config);
 
 export default class AllImmersive extends Component {
+  constructor(props){
+    super(props)
+      console.log(this.props.data)
+  }
   render() {
     return (
       <Image style={styles.container} resizeMode="contain" source={require('../images/background3.png')} >
