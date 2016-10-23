@@ -138,8 +138,8 @@ export default class AllStories extends Component {
       <Image source={Back} resizeMode='contain' style={styles.container}>
       <Nav name="All Stories" {...this.props} />
         <View style={{flex:1}}>
-        <Text style={{color:'#333', fontSize:35, fontWeight:'700', margin:10, backgroundColor:'rgba(0,0,0,0)', }}>ALL STORIES</Text>
-        <Text style={{backgroundColor:'rgba(0,0,0,0.8)', color:"#fff", marginLeft:10, padding:10, width:130}}>All Active Stories</Text>
+        <Text style={{color:'#333', fontSize:35, fontWeight:'700', margin:10, backgroundColor:'rgba(0,0,0,0)', shadowColor: "#000000", shadowOpacity: 0.3, shadowRadius: 3, shadowOffset: { height: 1, width: 0 }}}>ALL STORIES</Text>
+        <Text style={{backgroundColor:'rgba(0,0,0,0.8)', color:"#fff", marginLeft:10, padding:10, width:130, }}>All Active Stories</Text>
         <View style={{width:130, height:3, marginBottom:10, marginLeft:10, backgroundColor:this.state.storiesColor}} />
         <ListView style ={{flex:1}}
         dataSource = {this.state.dataSource}

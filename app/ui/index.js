@@ -36,6 +36,14 @@ export default class Index extends Component {
         );
     }
 
+if (routeId === 'eachUser') {
+      return (
+        <EachUser
+        {...this.props} 
+        navigator={navigator} />
+        );
+    }
+
      if (routeId === 'stories') {
       return (
         <Stories
@@ -64,7 +72,7 @@ export default class Index extends Component {
    />
      <Navigator
      style={{flex: 1}}
-     initialRoute={{id: 'allStories', name: 'allStories'}}
+     initialRoute={{id: 'eachUser', name: 'eachUser'}}
      renderScene={this.renderScene.bind(this)}/>
         </View>
     )

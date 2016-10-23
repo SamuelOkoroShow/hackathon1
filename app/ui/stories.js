@@ -165,6 +165,7 @@ export default class Stories extends Component {
     eachPost.push({message:x})
     this.setState({
       dataSource: ds.cloneWithRows(eachPost),
+      text:""
     })
   }
   render() {
@@ -186,10 +187,12 @@ export default class Stories extends Component {
         </View>
         <TextInput 
         maxLength = {50}
+        value = {this.state.text}
         onChangeText={(text) => {
           this.setState({text});
         }}
         onSubmitEditing = {() => this.submit(this.state.text)}
+        placeholder = "Build on our story..."
         style={{height:50, padding:10, backgroundColor:'#fff'}}
         />
         </View>

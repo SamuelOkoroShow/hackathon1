@@ -60,10 +60,10 @@ export default class Nav extends Component {
           
           <Text style={{color:"#fff", fontSize:17, margin:5,}}>All Stories</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ flexDirection:'row', alignItems:'center', marginLeft:20, marginTop:10}}>
+          <TouchableOpacity onPress={() => this.props.navigator.push({id:'eachUser'})} style={{ flexDirection:'row', alignItems:'center', marginLeft:20, marginTop:10}}>
           <Icon name="portrait" size={19} color='#fff' style={{margin:5}} />
           
-          <Text style={{color:"#fff", fontSize:17, margin:5,}}>Active Users</Text>
+          <Text style={{color:"#fff", fontSize:17, margin:5,}}>Profile</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{ flexDirection:'row', alignItems:'center', marginLeft:20, marginTop:10}}>
           <Icon name="style" size={19} color='#fff' style={{margin:5}} />
